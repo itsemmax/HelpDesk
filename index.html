@@ -47,7 +47,7 @@
           <label class="text-[#263441] font-bold flex flex-col">
             Titre du problème *
             <input
-              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252]"
               type="text" name="titre" placeholder="Connexion Wi-Fi instable" required />
             <p id="titre_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">
               Le titre doit contenir au moins 2 caractères.
@@ -56,7 +56,7 @@
           <label class="text-[#263441] font-bold flex flex-col">
             Catégorie *
             <select name="categorie"
-              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] "
               required>
               <option value="Réseau">Réseau</option>
               <option value="Matériel">Matériel</option>
@@ -66,7 +66,7 @@
           <label class="text-[#263441] font-bold flex flex-col">
             Priorité *
             <select name="priorite"
-              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252]"
               required>
               <option value="Haute">Haute</option>
               <option value="Normale">Normale</option>
@@ -75,7 +75,7 @@
           </label>
           <label class="text-[#263441] font-bold flex flex-col xl:col-span-3">Description *
             <textarea
-              class="border border-[#38434d] rounded-[5px] p-2.5 my-2.5 placeholder:text-[#364252] font-light resize-none"
+              class="border border-[#38434d] rounded-[5px] p-2.5 my-2.5 placeholder:text-[#364252] resize-none"
               name="description" placeholder="Décrivez votre problème..." required></textarea>
             <p id="desc_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">
               La description doit contenir au moins 2 caractères.
@@ -110,33 +110,21 @@
       </div>
       <div id="articles" class="md:grid md:grid-cols-2 md:gap-x-5 xl:mr-15 xl:grid-cols-3 xl:ml-12 md:gap-x-10">
       </div>
-      <div id="tab" class="hidden">
-        <table class="w-full text-left text-xs text-[#6B7686] border rounded-xl">
-          <tr class="bg-[#FAFBFC] px-4 py-9">
-            <th class="py-5 px-3">N° Ticket</th>
-            <th>Titre de la demande</th>
-            <th>Catégorie</th>
-            <th>Priorité</th>
-            <th>Action</th>
-          </tr>
-          <tr>
-            <td class="py-5 px-3 dorder">HD-001</td>
-            <td>
-              <h3>Connexion Wi-Fi instable</h3>
-              <p>Le réseau se déconnecte régulièrement.</p>
-            </td>
-            <td class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">
-              Réseau
-            </td>
-            <td class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">
-              Haute
-            </td>
-            <td>
-              <button id="edit-btn" class="text-[#617084]">✎</button>
-              <button id="delete-btn" class="text-[#CC626A]">♜</button>
-            </td>
-          </tr>
-        </table>
+      <div id="table" class="hidden xl:ml-12 xl:mr-10 mt-5">
+      <table class="w-full text-left text-xs text-[#6B7686] bg-white rounded-xl">
+        <thead>
+            <tr class="bg-[#FAFBFC] border-b border-[#EDF0F3]">
+                <th class="py-5 px-5">N° Ticket</th>
+                <th class="py-5">Titre de la demande</th>
+                <th class="py-5 px-2.5">Catégorie</th>
+                <th class="py-5 px-2.5">Priorité</th>
+                <th class="py-5">Action</th>
+            </tr>
+        </thead>
+        <tbody id="t_body">
+        </tbody>
+    </table>
+</div>
       </div>
     </section>
     <script src="js/script.js"></script>
