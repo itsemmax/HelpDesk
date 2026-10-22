@@ -41,7 +41,10 @@ if (localStorage.getItem("demandes"))
 else
   localStorage.setItem("demandes", JSON.stringify(lists));
 
-let counter = lists[lists.length - 1].id + 1;
+if (lists.length === 0)
+    counter = 1;
+else
+    counter = lists[lists.length - 1].id + 1;
 let check = 0;
 
 afficher();
