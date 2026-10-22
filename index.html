@@ -1,198 +1,146 @@
 <!doctype html>
 <html lang="en">
-  <head>
-    <meta charset="UTF-8" />
-    <meta name="viewport" content="width=device-width, initial-scale=1.0" />
 
-    <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
-    <link rel="stylesheet" href="css/style.css" />
-    <title>HelpDesk</title>
-    <link rel="preconnect" href="https://fonts.googleapis.com" />
-    <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
-    <link
-      href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
-      rel="stylesheet"
-    />
-    <link
-      rel="stylesheet"
-      href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css"
-    />
-  </head>
-  <body>
-    <header class="flex justify-between">
-      <img class="w-45 h-20 ml-3 xl:ml-12" src="assets/images/logo.png" alt="log" />
-      <p class="hidden md:block text-xs text-[#8A95A4] mr-6 mt-9 xl:mr-17">Atlas Solutions / Support</p>
-      <div class="md:hidden">
+<head>
+  <meta charset="UTF-8" />
+  <meta name="viewport" content="width=device-width, initial-scale=1.0" />
+
+  <script src="https://cdn.jsdelivr.net/npm/@tailwindcss/browser@4"></script>
+  <link rel="stylesheet" href="./css/style.css" />
+  <title>HelpDesk</title>
+  <link rel="preconnect" href="https://fonts.googleapis.com" />
+  <link rel="preconnect" href="https://fonts.gstatic.com" crossorigin />
+  <link
+    href="https://fonts.googleapis.com/css2?family=Bricolage+Grotesque:opsz,wght@12..96,200..800&family=Inter:ital,opsz,wght@0,14..32,100..900;1,14..32,100..900&display=swap"
+    rel="stylesheet" />
+  <link rel="stylesheet" href="https://cdnjs.cloudflare.com/ajax/libs/font-awesome/6.7.2/css/all.min.css" />
+</head>
+
+<body>
+  <header class="flex justify-between">
+    <img class="w-45 h-20 ml-3 xl:ml-12" src="assets/images/logo.png" alt="log" />
+    <p class="hidden md:block text-xs text-[#8A95A4] mr-6 mt-9 xl:mr-17">
+      Atlas Solutions / Support
+    </p>
+    <div class="md:hidden">
       <i class="fa-solid fa-bars text-[30px] mt-6 mr-4 text-[rgba(70,82,100,1)]"></i>
-      </div>
-    </header>
-    <main>
-      <section class="py-[20px] px-[20px] bg-[#F7F8FA]">
-        <h2 class="text-[23px] text-[#202A38] font-bold xl:ml-12">
-          Gestion des demandes
+    </div>
+  </header>
+  <main>
+    <section class="py-[20px] px-[20px] bg-[#F7F8FA]">
+      <h2 class="text-[23px] text-[#202A38] font-bold xl:ml-12">
+        Gestion des demandes
+      </h2>
+      <p class="text-[11px] text-[#8792A1] py-[10px] xl:ml-12">
+        Suivez et gérez les incidents informatiques.
+      </p>
+      <form id="form" novalidate
+        class="mt-[10px] p-[10px] border border-[#FFFFFF] rounded-[15px] bg-[#FFFFFF] xl:ml-12 xl:mr-10">
+        <h2 class="text-[18px] text-[#202A38] font-bold">
+          Créer une demande
         </h2>
-        <p class="text-[11px] text-[#8792A1] py-[10px] xl:ml-12">
-          Suivez et gérez les incidents informatiques.
+        <p class="text-[11px] text-[#8A95A4] pb-[10px]">
+          Décrivez votre problème informatique.
         </p>
-        <form id="form" novalidate
-          class="mt-[10px] p-[10px] border border-[#FFFFFF] rounded-[15px] bg-[#FFFFFF] xl:mx-12"
-        >
-          <h2 class="text-[18px] text-[#202A38] font-bold">
-            Créer une demande
+        <div
+          class="text-[12px] grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[25px] xl:grid-cols-[2fr_1fr_1fr]">
+          <label class="text-[#263441] font-bold flex flex-col">
+            Titre du problème *
+            <input
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              type="text" name="titre" placeholder="Connexion Wi-Fi instable" required />
+            <p id="titre_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">
+              Le titre doit contenir au moins 2 caractères.
+            </p>
+          </label>
+          <label class="text-[#263441] font-bold flex flex-col">
+            Catégorie *
+            <select name="categorie"
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              required>
+              <option value="Réseau">Réseau</option>
+              <option value="Matériel">Matériel</option>
+              <option value="Logiciel">Logiciel</option>
+            </select>
+          </label>
+          <label class="text-[#263441] font-bold flex flex-col">
+            Priorité *
+            <select name="priorite"
+              class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
+              required>
+              <option value="Haute">Haute</option>
+              <option value="Normale">Normale</option>
+              <option value="Basse">Basse</option>
+            </select>
+          </label>
+          <label class="text-[#263441] font-bold flex flex-col xl:col-span-3">Description *
+            <textarea
+              class="border border-[#38434d] rounded-[5px] p-2.5 my-2.5 placeholder:text-[#364252] font-light resize-none"
+              name="description" placeholder="Décrivez votre problème..." required></textarea>
+            <p id="desc_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">
+              La description doit contenir au moins 2 caractères.
+            </p>
+          </label>
+        </div>
+        <div class="flex justify-end">
+          <button type="submit"
+            class="bg-[#252F3E] text-[#FFFFFF] rounded-[5px] text-[13px] w-full md:w-fit px-6 py-2 mt-2.5">
+            ＋ Ajouter la demande
+          </button>
+        </div>
+      </form>
+    </section>
+    <section class="py-[20px] px-[20px] bg-[#F7F8FA]">
+      <div class="flex justify-between xl:ml-12">
+        <div class="w-full flex justify-between md:w-fit">
+          <h2 class="text-[18px] text-[#202A38] font-bold md:text-[21px]">
+            Liste des demandes
           </h2>
-          <p class="text-[11px] text-[#8A95A4] pb-[10px]">
-            Décrivez votre problème informatique.
+          <p id= "demandes">
           </p>
-          <div
-            class="text-[12px] grid grid-cols-[repeat(auto-fit,minmax(250px,1fr))] gap-[25px] xl:grid-cols-[2fr_1fr_1fr]"
-          >
-            <label class="text-[#263441] font-bold flex flex-col">
-              Titre du problème *
-              <input
-                class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
-                type="text"
-                name="titre"
-                placeholder="Connexion Wi-Fi instable"
-                required
-              />
-              <p id="titre_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">Le titre doit contenir au moins 2 caractères.</p>
-            </label>
-            <label class="text-[#263441] font-bold flex flex-col">
-              Catégorie *
-              <select
-                name="categorie"
-                class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
-                required
-              >
-                <option value="Réseau">Réseau</option>
-                <option value="Matériel">Matériel</option>
-                <option value="Logiciel">Logiciel</option>
-              </select>
-            </label>
-            <label class="text-[#263441] font-bold flex flex-col">
-              Priorité *
-              <select
-                name="priorite"
-                class="border border-[#38434d] rounded-[5px] p-[10px] my-[10px] placeholder:text-[#364252] font-light"
-                required
-              >
-                <option value="Haute">Haute</option>
-                <option value="Normale">Normale</option>
-                <option value="Basse">Basse</option>
-              </select>
-            </label>
-            <label
-              class="text-[#263441] font-bold flex flex-col xl:col-span-3"
-              >Description *
-              <textarea
-                class="border border-[#38434d] rounded-[5px] p-2.5 my-2.5 placeholder:text-[#364252] font-light resize-none"
-                name="description"
-                placeholder="Décrivez votre problème..."
-                required
-              ></textarea>
-              <p id="desc_err" class="hidden mt-1 text-[11px] text-red-500 font-normal">La description doit contenir au moins 2 caractères.</p>
-            </label>
-          </div>
-          <div class="flex justify-end">
-            <button
-              type="submit"
-              class="bg-[#252F3E] text-[#FFFFFF] rounded-[5px] text-[13px] w-full md:w-fit px-6 py-2 mt-2.5"
-            >
-              ＋ Ajouter la demande
-            </button>
-          </div>
-        </form>
-      </section>
-      <section class="py-[20px] px-[20px] bg-[#F7F8FA]">
-        <div class="flex justify-between xl:ml-12">
-          <div class = " w-full flex justify-between md:w-fit">
-            <h2 class="text-[18px] text-[#202A38] font-bold md:text-[21px]">Liste des demandes</h2>
-            <p class="bg-[#EBEFF4] text-[#5C697B] text-[11px] py-2.5 px-3 ml-2 rounded-2xl">0 demandes</p>
-          </div >
-          <div class="bg-[#EDF0F4] hidden md:block md:rounded-xl md:flex md:align-middle md:gap-2.5 xl:mr-12">
-          <button id ="carte-btn" class="px-2 bg-[#FFFFFF] text-xs text-[#202A38] rounded-xl font-bold">▦  Cartes</button>
-          <button id = "list-btn" class ="px-2 text-[#202A38] text-xs">☷  Tableau</button>        
         </div>
+        <div class="bg-[#EDF0F4] hidden md:block md:rounded-xl md:flex md:align-middle md:gap-2.5 xl:mr-10">
+          <button id="carte-btn" class="px-2 bg-[#FFFFFF] text-xs text-[#202A38] rounded-xl font-bold">
+            ▦ Cartes
+          </button>
+          <button id="list-btn" class="px-2 text-[#202A38] text-xs">
+            ☷ Tableau
+          </button>
         </div>
-        <div class="md:grid md:grid-cols-[repeat(auto-fit,minmax(250px,1fr))] md:gap-x-5 xl:mr-15">
-        <article id="card" class="w-full p-5 bg-[#FFFFFF] my-4 rounded-2xl md:w-[350px] xl:w-[400px] xl:ml-12">
-            <div class="flex justify-between">
-            <img src="assets/images/card_img.png" alt="card-img"
-            class="w-15">
-            <p class="text-[11px] text-[#99A4B2] mt-4.5">HD-001</p>
-          </div>
-          <h2 class="text-[#243143] text-[16px] py-2.5 font-bold">Connexion Wi-Fi instable</h2>
-          <p class="text-[#8D99A8] text-[11px]">Le réseau se déconnecte régulièrement.</p>
-          <div class="flex gap-2 text-[11px] font-bold my-7">
-          <p id="ctg" class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">Réseau</p>
-          <p id="prt" class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">Haute</p>
-          </div>
-          <div class="flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]">
-            <button id="edit-btn" class="text-[#617084]">✎ Modifier</button>
-            <button id="delete-btn" class="text-[#CC626A]">♜ Supprimer</button>
-          </div>
-        </article>
-        <article id="card" class="w-full p-5 bg-[#FFFFFF] my-4 rounded-2xl md:w-[350px] xl:w-[400px] xl:ml-12">
-            <div class="flex justify-between">
-            <img src="assets/images/card_img.png" alt="card-img"
-            class="w-15">
-            <p class="text-[11px] text-[#99A4B2] mt-4.5">HD-001</p>
-          </div>
-          <h2 class="text-[#243143] text-[16px] py-2.5 font-bold">Connexion Wi-Fi instable</h2>
-          <p class="text-[#8D99A8] text-[11px]">Le réseau se déconnecte régulièrement.</p>
-          <div class="flex gap-2 text-[11px] font-bold my-7">
-          <p id="ctg" class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">Réseau</p>
-          <p id="prt" class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">Haute</p>
-          </div>
-          <div class="flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]">
-            <button id="edit-btn" class="text-[#617084]">✎ Modifier</button>
-            <button id="delete-btn" class="text-[#CC626A]">♜ Supprimer</button>
-          </div>
-        </article>
-        <article id="card" class="w-full p-5 bg-[#FFFFFF] my-4 rounded-2xl md:w-[350px] xl:w-[400px] xl:ml-12">
-            <div class="flex justify-between">
-            <img src="assets/images/card_img.png" alt="card-img"
-            class="w-15">
-            <p class="text-[11px] text-[#99A4B2] mt-4.5">HD-001</p>
-          </div>
-          <h2 class="text-[#243143] text-[16px] py-2.5 font-bold">Connexion Wi-Fi instable</h2>
-          <p class="text-[#8D99A8] text-[11px]">Le réseau se déconnecte régulièrement.</p>
-          <div class="flex gap-2 text-[11px] font-bold my-7">
-          <p id="ctg" class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">Réseau</p>
-          <p id="prt" class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">Haute</p>
-          </div>
-          <div class="flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]">
-            <button id="edit-btn" class="text-[#617084]">✎ Modifier</button>
-            <button id="delete-btn" class="text-[#CC626A]">♜ Supprimer</button>
-          </div>
-        </article>
-        </div>
-        <div id="tab" class="hidden">
-          <table class="w-full text-left text-xs text-[#6B7686] border rounded-xl">
-            <tr class="bg-[#FAFBFC] px-4 py-9">
-              <th class="py-5 px-3">N° Ticket</th>
-              <th>Titre de la demande</th>
-              <th>Catégorie</th>
-              <th>Priorité</th>
-              <th>Action</th>
-            </tr>
-            <tr>
-              <td class="py-5 px-3 dorder">HD-001</td>
-              <td>
-                <h3>Connexion Wi-Fi instable</h3>
-                <p>Le réseau se déconnecte régulièrement.</p>
-              </td>
-              <td class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">Réseau</td>
-              <td class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">Haute</td>
-              <td>
-                <button id="edit-btn" class="text-[#617084]">✎</button>
-                <button id="delete-btn" class="text-[#CC626A]">♜</button>
-              </td>
-            </tr>
-          </table>
-        </div>
-      </section>
-      <script src="js/script.js"></script>
-    </main>
-  </body>
+      </div>
+      <div id="articles" class="md:grid md:grid-cols-2 md:gap-x-5 xl:mr-15 xl:grid-cols-3 xl:ml-12 md:gap-x-10">
+      </div>
+      <div id="tab" class="hidden">
+        <table class="w-full text-left text-xs text-[#6B7686] border rounded-xl">
+          <tr class="bg-[#FAFBFC] px-4 py-9">
+            <th class="py-5 px-3">N° Ticket</th>
+            <th>Titre de la demande</th>
+            <th>Catégorie</th>
+            <th>Priorité</th>
+            <th>Action</th>
+          </tr>
+          <tr>
+            <td class="py-5 px-3 dorder">HD-001</td>
+            <td>
+              <h3>Connexion Wi-Fi instable</h3>
+              <p>Le réseau se déconnecte régulièrement.</p>
+            </td>
+            <td class="bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl">
+              Réseau
+            </td>
+            <td class="bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl">
+              Haute
+            </td>
+            <td>
+              <button id="edit-btn" class="text-[#617084]">✎</button>
+              <button id="delete-btn" class="text-[#CC626A]">♜</button>
+            </td>
+          </tr>
+        </table>
+      </div>
+    </section>
+    <script src="js/script.js"></script>
+  </main>
+</body>
+
 </html>
