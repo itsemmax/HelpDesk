@@ -64,12 +64,17 @@ function parse_desc(description) {
   return false;
 }
 function modifier(dmd){
-    titre.value = dmd.titre;
-    categorie.value = dmd.categorie;
-    description.value = dmd.description;
-    priorite.value = dmd.priorite;
-    check = dmd.id;
-    form.scrollIntoView(true);
+    const check_mod= confirm(
+        "Voulez-vous vraiment modifier cette demande ?"
+    );
+    if(check_mod){
+      titre.value = dmd.titre;
+      categorie.value = dmd.categorie;
+      description.value = dmd.description;
+      priorite.value = dmd.priorite;
+      check = dmd.id;
+      form.scrollIntoView(true);
+    }
 }
 function delete_card(carte){
   const check_delete= confirm(
