@@ -137,8 +137,7 @@ function afficher() {
     div_2.append(p_4);
 
     const div_3 = document.createElement("div");
-    div_3.className =
-      "flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]";
+    div_3.className ="flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]";
 
     const btn_1 = document.createElement("button");
     btn_1.className = "text-[#617084]";
