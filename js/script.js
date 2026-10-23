@@ -11,6 +11,7 @@ const table = document.querySelector("#table");
 const t_body = document.querySelector("#t_body");
 const carte_btn = document.querySelector("#carte-btn");
 const list_btn = document.querySelector("#list-btn");
+const submit_btn = document.querySelector("#submit-btn");
 
 let lists = [
   {
@@ -73,6 +74,7 @@ function modifier(dmd){
       description.value = dmd.description;
       priorite.value = dmd.priorite;
       check = dmd.id;
+      submit_btn.textContent = "✎ Modifier la demande";
       form.scrollIntoView(true);
     }
 }
@@ -86,81 +88,67 @@ function delete_card(carte){
       afficher();
     }
 }
+function add_element(tag, className, text) {
+    const element = document.createElement(tag);
+    element.className = className;
+    element.textContent = text;
+    return element;
+}
+
 function afficher() {
-    articles.textContent="";
+    articles.textContent = "";
     lists = JSON.parse(localStorage.getItem("demandes"));
     demandes.className = "bg-[#EBEFF4] text-[#5C697B] text-[11px] py-2.5 px-3 ml-2 rounded-2xl";
     demandes.textContent = `${lists.length} demandes`;
-  for (let i = 0; i < lists.length; i++) {
-    const article = document.createElement("article");
-    article.className = "w-full p-5 bg-[#FFFFFF] my-4 rounded-2xl md:w-[350px] xl:w-[450px]";
 
-    const div_1 = document.createElement("div");
-    div_1.className = "flex justify-between";
+    for (let i = 0; i < lists.length; i++) {
+        const article = add_element("article", "w-full p-5 bg-[#FFFFFF] my-4 rounded-2xl md:w-[350px] xl:w-[450px]", "");
+        const div_1 = add_element("div", "flex justify-between", "");
 
-    const img = document.createElement("img");
-    img.src = "assets/images/card_img.png";
-    img.alt = "card-img";
-    img.className = "w-15";
+        const img = document.createElement("img");
+        img.src = "assets/images/card_img.png";
+        img.alt = "card-img";
+        img.className = "w-15";
 
-    const p = document.createElement("p");
-    p.className = "text-[11px] text-[#99A4B2] mt-4.5";
-    p.textContent = `HD-${String(lists[i].id).padStart(3, "0")}`;
+        const p = add_element("p", "text-[11px] text-[#99A4B2] mt-4.5", `HD-${String(lists[i].id).padStart(3, "0")}`);
 
-    div_1.append(img, p);
+        div_1.append(img, p);
 
-    const h2 = document.createElement("h2");
-    h2.className = "text-[#243143] text-[16px] py-2.5 font-bold";
-    h2.textContent = `${lists[i].titre}`;
+        const h2 = add_element("h2", "text-[#243143] text-[16px] py-2.5 font-bold", lists[i].titre);
+        const p_2 = add_element("p", "text-[#8D99A8] text-[11px]", lists[i].description);
+        const div_2 = add_element("div", "flex gap-2 text-[11px] font-bold my-7", "");
+        const p_3 = add_element("p", "bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl", lists[i].categorie);
 
-    const p_2 = document.createElement("p");
-    p_2.className = "text-[#8D99A8] text-[11px]";
-    p_2.textContent = `${lists[i].description}`;
+        let color = "";
+        if (lists[i].priorite == "Haute")
+            color = "bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl";
+        else if (lists[i].priorite == "Normale")
+            color = "bg-[#FFF5DF] text-[#A67A2B] px-5 py-1 rounded-xl";
+        else
+            color = "bg-[#E8F6EE] text-[#388867] px-5 py-1 rounded-xl";
+        const p_4 = add_element("p", color, lists[i].priorite);
 
-    const div_2 = document.createElement("div");
-    div_2.className = "flex gap-2 text-[11px] font-bold my-7";
+        div_2.append(p_3);
+        div_2.append(p_4);
 
-    const p_3 = document.createElement("p");
-    p_3.className = "bg-[#F0F3F7] text-[#64748B] px-5 py-1 rounded-xl";
-    p_3.textContent = `${lists[i].categorie}`;
+        const div_3 = add_element("div", "flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]", "");
+        const btn_1 = add_element("button", "text-[#617084]", "✎ Modifier");
+        btn_1.id = "edit-btn";
+        btn_1.addEventListener("click", function () {
+            modifier(lists[i]);
+        });
 
-    const p_4 = document.createElement("p");
-    if(lists[i].priorite == "Haute")
-        p_4.className = "bg-[#FFF0E8] text-[#BA6444] px-5 py-1 rounded-xl";
-    else if(lists[i].priorite == "Normale")
-        p_4.className = "bg-[#FFF5DF] text-[#A67A2B] px-5 py-1 rounded-xl";
-    else
-        p_4.className = "bg-[#E8F6EE] text-[#388867] px-5 py-1 rounded-xl";
-    p_4.textContent = `${lists[i].priorite}`;
+        const btn_2 = add_element("button", "text-[#CC626A]", "♜ Supprimer");
+        btn_2.id = "delete-btn";
+        btn_2.addEventListener("click", function () {
+            delete_card(lists[i]);
+        });
 
-    div_2.append(p_3);
-    div_2.append(p_4);
-
-    const div_3 = document.createElement("div");
-    div_3.className ="flex justify-end text-[13px] gap-3 border-t pt-3 border-[#EDF0F3]";
-
-    const btn_1 = document.createElement("button");
-    btn_1.className = "text-[#617084]";
-    btn_1.id = "edit-btn";
-    btn_1.textContent = "✎ Modifier";
-    btn_1.addEventListener("click", function () {
-        modifier(lists[i]);
-    });
-
-    const btn_2 = document.createElement("button");
-    btn_2.className = "text-[#CC626A]";
-    btn_2.id = "delete-btn";
-    btn_2.textContent = "♜ Supprimer";
-    btn_2.addEventListener("click",function(){
-      delete_card(lists[i]);
-    })
-
-    div_3.append(btn_1, btn_2);
-
-    article.append(div_1, h2, p_2, div_2, div_3);
-    articles.append(article);
-  }
-  afficher_tableau();
+        div_3.append(btn_1, btn_2);
+        article.append(div_1, h2, p_2, div_2, div_3);
+        articles.append(article);
+    }
+    afficher_tableau();
 }
 
 form.addEventListener("submit", function (event) {
@@ -208,6 +196,7 @@ form.addEventListener("submit", function (event) {
   localStorage.setItem("demandes", JSON.stringify(lists));
   afficher();
   form.reset();
+  submit_btn.textContent = "＋ Ajouter la demande";
 });
 carte_btn.addEventListener("click", function () {
     articles.classList.remove("md:hidden");
